@@ -94,30 +94,6 @@ public class AvlTree {
         root = this.insertUsingRecursionV2(root, value);
     }
 
-    private void insertUsingRecursion(AvlNode node, int value){
-
-        AvlNode nodeToAdd = new AvlNode(0);
-
-        if (value < node.getValue() ) {
-
-            if (node.getLeftChild() == null) {
-                node.setLeftChild(nodeToAdd);
-                return;
-            }
-
-            insertUsingRecursion(node.getLeftChild(), value);
-        }
-
-        else if (value > node.getValue()) {
-
-            if (node.getRightChild() == null) {
-                node.setRightChild(nodeToAdd);
-                return;
-            }
-
-            insertUsingRecursion(node.getRightChild(), value);
-        }
-    }
 
 
     // 20 step 1
@@ -138,13 +114,27 @@ public class AvlTree {
                 height(root.rightChild)
         ) + 1;
 
-        if (isLeftHeavy(root))
-            System.out.println(root.leftChild.getValue() + " is left heavy!");
-
-        else if (isRightHeavy(root))
-            System.out.println(root.rightChild.getValue() + " is right heavy!");
+        balance(root);
 
         return root;
+    }
+    private  void balance(AvlNode node){
+        if (isLeftHeavy(node)) {
+
+            if (balanceFactor(node.leftChild) < 0)
+                System.out.println("Left rotate on " + node.leftChild.value);
+
+            System.out.println("Right rotate on " + node.value);
+        }
+
+        else if (isRightHeavy(node)) {
+
+            if (balanceFactor(node.rightChild) > 0)
+                System.out.println("Right rotate on " + node.rightChild.value);
+
+            System.out.println("Left rotate on " + node.value);
+        }
+
     }
 
     private int height(AvlNode node){
