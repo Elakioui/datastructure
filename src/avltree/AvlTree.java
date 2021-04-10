@@ -109,32 +109,91 @@ public class AvlTree {
         else if (value > root.getValue())
             root.rightChild = insertUsingRecursionV2(root.getRightChild(), value);
 
-        root.height = Math.max(
-                height(root.leftChild),
-                height(root.rightChild)
-        ) + 1;
+        root.height = calculateHeight(root);
 
-        balance(root);
+        root = balance(root);
 
         return root;
     }
-    private  void balance(AvlNode node){
-        if (isLeftHeavy(node)) {
+    private  AvlNode balance(AvlNode root){
+        if (isLeftHeavy(root)) {
 
-            if (balanceFactor(node.leftChild) < 0)
-                System.out.println("Left rotate on " + node.leftChild.value);
+            if (balanceFactor(root.leftChild) < 0)
+                 root = rotateLeft(root.leftChild);
 
-            System.out.println("Right rotate on " + node.value);
+            root = rotateRight(root);
         }
 
-        else if (isRightHeavy(node)) {
+        else if (isRightHeavy(root)) {
 
-            if (balanceFactor(node.rightChild) > 0)
-                System.out.println("Right rotate on " + node.rightChild.value);
+            if (balanceFactor(root.rightChild) > 0)
+                 root = rotateRight(root.rightChild);
 
-            System.out.println("Left rotate on " + node.value);
+            root = rotateLeft(root);
         }
 
+        return root;
+
+    }
+
+    //
+    //   20
+    // 10   30
+    //   19
+
+    // 19 -> newRootLeft
+
+
+    private AvlNode rotateLeft(AvlNode root){
+
+        AvlNode newRoot = root.rightChild;
+
+        if (newRoot.leftChild != null) {
+            AvlNode newRootLeft = newRoot.leftChild;
+            newRoot.leftChild = root;
+            root.rightChild = newRootLeft;
+        }
+        else {
+            newRoot.leftChild = root;
+            root.rightChild = null;
+        }
+
+        calculateHeight(newRoot);
+        calculateHeight(root);
+
+        return newRoot;
+    }
+
+    //       22
+    //     19
+    //    18  20
+    //
+    //
+    private AvlNode rotateRight(AvlNode root){
+
+        AvlNode newRoot = root.leftChild;
+
+        if (newRoot.rightChild != null) {
+            AvlNode newRootRight = newRoot.rightChild;
+            newRoot.rightChild = root;
+            root.leftChild = newRootRight;
+        }
+        else {
+            newRoot.rightChild = root;
+            root.leftChild = null;
+        }
+
+        calculateHeight(newRoot);
+        calculateHeight(root);
+
+        return newRoot;
+    }
+
+    private int calculateHeight(AvlNode root){
+        return Math.max(
+                height(root.leftChild),
+                height(root.rightChild)
+        ) + 1;
     }
 
     private int height(AvlNode node){
