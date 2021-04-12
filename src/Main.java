@@ -10,17 +10,12 @@ public class Main {
     private static String s;
 
     public static void main(String[] args){
-        //    12
-        //      14
-         //       15
+        //    18
+        //   16
+        // 15  17
+        //
+        //
 
-        //
-        //
-        //      25
-        //    20
-        //      24
-        //
-        //
 
         AvlTree avlTree = new AvlTree();
         avlTree.insertUsingRecursion(25);
