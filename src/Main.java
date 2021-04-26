@@ -1,4 +1,5 @@
 import arraySearch.FirstAssignment;
+import arraySearch.SecondAssignment;
 import avltree.AvlTree;
 import nolinear.BinarySearchTree;
 
@@ -12,10 +13,14 @@ public class Main {
 
     public static void main(String[] args){
 
-        String returnedDay  = FirstAssignment.search("Fri", 22);
+//        String returnedDay  = FirstAssignment.search("Fri", 22);
+//
+//        System.out.println(returnedDay);
 
-        System.out.println(returnedDay);
+        int[] seats = {5, 4, 8};
+        int[] persons = {3, 2, 5};
 
+        int carsToUser = SecondAssignment.getNumberOfCars(seats, persons);
 
     }
 
