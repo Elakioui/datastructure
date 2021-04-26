@@ -1,3 +1,4 @@
+import arraySearch.FirstAssignment;
 import avltree.AvlTree;
 import nolinear.BinarySearchTree;
 
@@ -10,17 +11,10 @@ public class Main {
     private static String s;
 
     public static void main(String[] args){
-        //    18
-        //   16
-        // 15  17
-        //
-        //
 
+        String returnedDay  = FirstAssignment.search("Fri", 22);
 
-        AvlTree avlTree = new AvlTree();
-        avlTree.insertUsingRecursion(25);
-        avlTree.insertUsingRecursion(20);
-        avlTree.insertUsingRecursion(24);
+        System.out.println(returnedDay);
 
 
     }
