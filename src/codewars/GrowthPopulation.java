@@ -20,7 +20,6 @@ public class GrowthPopulation {
         double increasedNumber =  (double) p0 * percent * 0.01 ;
         double currentYearPopulation = Math.floor(increasedNumber + (double) p0 + (double) aug);
 
-
         return (int)  currentYearPopulation;
 
     }
