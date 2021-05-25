@@ -18,7 +18,7 @@ public class WhichAreIn {
         System.out.println(
                 WhichAreIn.inArray(
                         new String[]{"test1", "test2"},
-                        new String[]{"atest1", "btest2"})
+                        new String[]{"atest1", "btest2", "ctest3"})
                         .length
         );
     }
